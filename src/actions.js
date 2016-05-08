@@ -1,6 +1,6 @@
 export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
-export const PUBLISH_POST = 'DELETE_POST'
+export const PUBLISH_POST = 'PUBLISH_POST'
 export const SET_VISIBILITY = 'SET_VISIBILITY'
 
 export const VisibilityFilters = {
@@ -9,7 +9,7 @@ export const VisibilityFilters = {
   UNPUBLISHED_ONLY: 'UNPUBLISHED_ONLY'
 }
 
-export function addBlogPost(title, body) {
+export function addBlogpost(title, body) {
   return {
     type: ADD_POST,
     title: title,
@@ -17,14 +17,14 @@ export function addBlogPost(title, body) {
   }
 }
 
-export function deleteBlogPost(id) {
+export function deleteBlogpost(id) {
   return {
     type: DELETE_POST,
     id: id
   }
 }
 
-export function publishBlogPost(id) {
+export function publishBlogpost(id) {
   return {
     type: PUBLISH_POST,
     id: id
