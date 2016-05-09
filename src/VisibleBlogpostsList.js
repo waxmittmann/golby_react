@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { publishBlogpost } from '../actions'
-import BlogpostList from '../BlogpostList'
+import { publishBlogpost } from './actions'
+import BlogpostList from './BlogpostList'
 
 const getVisibleBlogposts = (blogposts, filter) => {
   switch (filter) {

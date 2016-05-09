@@ -1,11 +1,12 @@
-import { ADD_TODO, REMOVE_TODO } from './actions'
+import { ADD_POST, DELETE_POST, PUBLISH_POST, SET_VISIBILITY } from './actions'
 import { VisibilityFilters } from './actions'
 import { combineReducers } from 'redux'
 
+/*
 const initialState = {
   visibilityFilter: VisibilityFilters.ALL,
-  posts: {}
-}
+  blogposts: {}
+}*/
 
 /*export function golbyApp(state, action) {
   if (typeof state == 'undefined') {
@@ -21,8 +22,8 @@ const initialState = {
 }*/
 
 const golbyApp = combineReducers({
-  visibilityFilter,
-  posts
+  blogposts,
+  visibilityFilter
 })
 
 export default golbyApp
@@ -31,26 +32,29 @@ function visibilityFilter(state = VisibilityFilters.ALL, action) {
   switch (action.type) {
     case SET_VISIBILITY:
       return action.filter
+
     default:
       return state
   }
 }
 
-function posts(state = {}, action) {
+function blogposts(state = {}, action) {
   switch(action.type) {
     case ADD_POST:
-      return {
-          ...state.posts,
-          {
-            id: state.posts.length,
+      //const newId = Object.keys(state).length
+      return Object.assign({}, {
+          ...state,
+          newId: {
+            //id: newId,
+            id: 1,
             body: action.body,
             title: action.title,
             published: false
           }
-        }
+        })
 
     case PUBLISH_POST:
-        state.posts.map((post) => {
+        state.map((post) => {
           if (post.id == action.id) {
             return Object.assign({}, post, {
               published: true
