@@ -3,20 +3,32 @@ import { connect } from 'react-redux'
 import { addBlogpost } from './actions'
 
 let AddBlogpost = ({ dispatch }) => {
-  let input
+  let title
+  let body
 
   return (
     <div>
+      <div>
       <input ref={node => {
-        input = node
+        title = node
       }} />
+      </div>
 
+      <div>
+      <textarea ref={node => {
+        body = node
+      }} />
+      </div>
+
+      <div>
       <button onClick={() => {
-        dispatch(addBlogpost(input.value, input.value))
-        input.value = ''
+        dispatch(addBlogpost(title.value, body.value))
+        title.value = ''
+        body.value
       }}>
         Add Blogpost
       </button>
+      </div>
     </div>
   )
 }
