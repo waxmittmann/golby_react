@@ -14,16 +14,6 @@ const BlogpostList = ({ blogposts, onBlogpostClick }) => (
   </ul>
 )
 
-/*
-{blogposts.map(blogpost =>
-  <Blogpost
-    key={blogpost.id}
-    {...blogpost}
-    onClick={() => onBlockpostClick(blogpost.id)}
-  />
-)}
-*/
-
 BlogpostList.propTypes = {
   blogposts: PropTypes.objectOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
