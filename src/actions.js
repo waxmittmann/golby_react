@@ -31,6 +31,14 @@ export function publishBlogpost(id) {
   }
 }
 
+
+export function setVisibilityFilter(setting) {
+  return {
+    type: SET_VISIBILITY,
+    filter: setting
+  }
+}
+
 // const boundAddBlogPost = (title, body) => dispatch(addBlogPost(title, body))
 //
 // const boundDeleteBlogPost = (id) => dispatch(deleteBlogPost(id))

@@ -75,7 +75,7 @@ function blogposts(state = {}, action) {
         state.map((post) => {
           if (post.id == action.id) {
             return Object.assign({}, post, {
-              published: true
+              published: false
             })
           } else {
             return post
