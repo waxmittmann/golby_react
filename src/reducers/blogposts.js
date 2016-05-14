@@ -8,7 +8,6 @@ function blogposts(state = {}, action) {
       const newId = (Object.keys(state).length)
       var result =  Object.assign({}, state)
       result[newId] = {
-        //id: newId,
         body: action.body,
         title: action.title,
         published: false
@@ -16,15 +15,15 @@ function blogposts(state = {}, action) {
       return result
 
     case PUBLISH_POST:
-        state.map((post) => {
-          if (post.id == action.id) {
-            return Object.assign({}, post, {
-              published: false
-            })
-          } else {
-            return post
-          }
-        })
+        var post = state[action.id]
+        if (post) {
+          var result = Object.assign({}, state)
+          result[action.id] = Object.assign({}, post)
+          result[action.id].published = true
+          return result
+        } else {
+          return state
+        }
 
     default:
       return state

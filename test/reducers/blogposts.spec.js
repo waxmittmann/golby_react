@@ -63,4 +63,67 @@ describe('Blogpost reducer', function () {
             }
     })
   })
+
+  it('should return state when no post with id exists', function () {
+    //Given
+    var title = "This is the title"
+    var body = "This is the body"
+    var curState = {
+      "0": {
+        title: "Some title",
+        body: "Some body",
+        published: false
+      }
+    }
+
+    var setPublishedAction = {
+      type: PUBLISH_POST,
+      id: "1"
+    }
+
+    //When
+    var result = blogposts(curState, setPublishedAction)
+
+    //Then
+    expect(Object.keys(result).length).toBe(1)
+    expect(result[0]).toBeDefined
+    expect(result[1]).toNotBeDefined
+    expect(result).toEqual(curState)
+  })
+
+  it('should set published = true for PUBLISH_POST', function () {
+    //Given
+    var title = "This is the title"
+    var body = "This is the body"
+    var curState = {
+      "0": {
+        title: "Some title",
+        body: "Some body",
+        published: false
+      },
+      "1": {
+        title: title,
+        body: body,
+        published: false
+      }
+    }
+
+    var setPublishedAction = {
+      type: PUBLISH_POST,
+      id: "1"
+    }
+
+    //When
+    var result = blogposts(curState, setPublishedAction)
+
+    //Then
+    expect(Object.keys(result).length).toBe(2)
+    expect(result[0]).toBeDefined
+    expect(result[1]).toBeDefined
+    expect(result[1]).toEqual({
+        title: title,
+        body: body,
+        published: true
+    })
+  })
 })
