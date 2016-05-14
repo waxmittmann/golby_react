@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addBlogpost } from './actions'
+import { Button } from 'react-bootstrap';
 
 let AddBlogpost = ({ dispatch }) => {
   let title
@@ -21,13 +22,15 @@ let AddBlogpost = ({ dispatch }) => {
       </div>
 
       <div>
-      <button onClick={() => {
+      // <Button>Default</Button>
+
+      <Button onClick={() => {
         dispatch(addBlogpost(title.value, body.value))
         title.value = ''
         body.value
       }}>
         Add Blogpost
-      </button>
+      </Button>
       </div>
     </div>
   )

@@ -3,6 +3,19 @@ import { ADD_POST, DELETE_POST, PUBLISH_POST, SET_VISIBILITY } from '../../src/a
 import blogposts from '../../src/reducers/blogposts'
 
 describe('Blogpost reducer', function () {
+  it('should return empty blogposts for invalid type', function () {
+    //Given
+    var addBlogpostAction = {
+      type: "NONSENSE"
+    }
+
+    //When
+    var result = blogposts({a: 'a'}, addBlogpostAction)
+
+    //Then
+    expect(result).toEqual({a: 'a'})
+  })
+
   it('should correctly add a post to empty state', function () {
     //Given
     var title = "This is the title"

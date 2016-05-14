@@ -12,20 +12,27 @@ function blogposts(state = {}, action) {
         title: action.title,
         published: false
       }
+      console.log("RETURNING FROM ADD: " + result)
       return result
 
     case PUBLISH_POST:
         var post = state[action.id]
+        console.log("Post is " + post)
         if (post) {
+          console.log("Is defined")
           var result = Object.assign({}, state)
           result[action.id] = Object.assign({}, post)
           result[action.id].published = true
+
+          console.log("RETURNING FROM PUBLISH: " + result)
           return result
         } else {
+          console.log("RETURNING PUBPUB" + state)
           return state
         }
 
     default:
+      console.log("RETURNING DEFAULT FROM BLOGPOSTS: " + state)
       return state
   }
 }

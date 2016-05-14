@@ -1,7 +1,15 @@
 import React, { PropTypes } from 'react'
 import Blogpost from './Blogpost'
 
-const BlogpostList = ({ blogposts, onBlogpostClick }) => (
+const BlogpostList = ({ blogposts, onBlogpostClick }) => {
+  console.log("Blogposts: " + blogposts)
+  if (!blogposts) {
+    blogposts = {}
+  }
+  console.log("Blogposts: ")
+  console.log(blogposts)
+
+  (
   <ul>
     {Object.keys(blogposts)
       .map((postId) => (
@@ -12,11 +20,11 @@ const BlogpostList = ({ blogposts, onBlogpostClick }) => (
         />
     ))}
   </ul>
-)
+  )
+}
 
 BlogpostList.propTypes = {
   blogposts: PropTypes.objectOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
     published: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired
