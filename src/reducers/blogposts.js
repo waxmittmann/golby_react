@@ -1,24 +1,14 @@
-import { ADD_POST, DELETE_POST, PUBLISH_POST, SET_VISIBILITY } from './actions'
-import { VisibilityFilters } from './actions'
-import { combineReducers } from 'redux'
-
-function visibilityFilter(state = VisibilityFilters.ALL, action) {
-  switch (action.type) {
-    case SET_VISIBILITY:
-      return action.filter
-
-    default:
-      return state
-  }
-}
+import { ADD_POST, DELETE_POST, PUBLISH_POST} from '../actions'
+import { VisibilityFilters } from '../actions'
 
 function blogposts(state = {}, action) {
+  console.log("Inside blogposts")
   switch(action.type) {
     case ADD_POST:
-      const newId = (Object.keys(state).length + 1)
+      const newId = (Object.keys(state).length)
       var result =  Object.assign({}, state)
       result[newId] = {
-        id: newId,
+        //id: newId,
         body: action.body,
         title: action.title,
         published: false
@@ -41,10 +31,4 @@ function blogposts(state = {}, action) {
   }
 }
 
-const golbyApp = combineReducers({
-  blogposts,
-  visibilityFilter
-})
-
-//export blogposts
-export default golbyApp
+export default blogposts
