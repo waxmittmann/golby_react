@@ -1,7 +1,9 @@
 import React from 'react'
+
+import VisibleBlogpostsList from '../containers/VisibleBlogpostsList'
+import AddBlogpost from '../containers/AddBlogpost'
+
 import Footer from './Footer'
-import VisibleBlogpostsList from './VisibleBlogpostsList'
-import AddBlogpost from './AddBlogpost'
 
 const App = () => (
   <div>

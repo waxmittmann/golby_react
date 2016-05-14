@@ -1,6 +1,7 @@
+import { combineReducers } from 'redux'
+
 import { ADD_POST, DELETE_POST, PUBLISH_POST, SET_VISIBILITY } from '../actions'
 import { VisibilityFilters } from '../actions'
-import { combineReducers } from 'redux'
 
 function visibilityFilter(state = VisibilityFilters.ALL, action) {
   switch (action.type) {

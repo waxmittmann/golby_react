@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+
 import Blogpost from './Blogpost'
 
 const BlogpostList = ({ blogposts, onBlogpostClick }) =>

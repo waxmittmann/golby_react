@@ -3,8 +3,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+
 import golbyApp from './src/reducers'
-import App from './src/App'
+import App from './src/components/App'
 
 console.log("Golby app is: " + golbyApp)
 

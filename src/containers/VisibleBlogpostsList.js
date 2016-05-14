@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
-import { publishBlogpost } from './actions'
-import BlogpostList from './BlogpostList'
+
+import { publishBlogpost } from '../actions'
+
+import BlogpostList from '../components/BlogpostList'
 
 const getVisibleBlogposts = (blogposts, filter) => {
   switch (filter) {
@@ -18,7 +20,7 @@ const getVisibleBlogposts = (blogposts, filter) => {
 
 function filterMap(inMap, filterFunc) {
   console.log("Filtering")
-  
+
   var newMap = {}
   for (var key in inMap) {
     // skip loop if the property is from prototype

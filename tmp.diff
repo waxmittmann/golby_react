@@ -1,0 +1,159 @@
+diff --git a/src/AddBlogpost.js b/src/AddBlogpost.js
+index d413c26..26f051a 100644
+--- a/src/AddBlogpost.js
++++ b/src/AddBlogpost.js
+@@ -1,7 +1,7 @@
+ import React from 'react'
+ import { connect } from 'react-redux'
+ import { addBlogpost } from './actions'
+-import { Button } from 'react-bootstrap';
++//import { Button } from 'react-bootstrap';
+ 
+ let AddBlogpost = ({ dispatch }) => {
+   let title
+@@ -22,19 +22,19 @@ let AddBlogpost = ({ dispatch }) => {
+       </div>
+ 
+       <div>
+-      // <Button>Default</Button>
+ 
+-      <Button onClick={() => {
++      <button onClick={() => {
+         dispatch(addBlogpost(title.value, body.value))
+         title.value = ''
+-        body.value
++        body.value = ''
+       }}>
+         Add Blogpost
+-      </Button>
++      </button>
+       </div>
+     </div>
+   )
+ }
++// <Button>Default</Button>
+ 
+ AddBlogpost = connect()(AddBlogpost)
+ 
+diff --git a/src/BlogpostList.js b/src/BlogpostList.js
+index cfea4b4..1e47dab 100644
+--- a/src/BlogpostList.js
++++ b/src/BlogpostList.js
+@@ -1,15 +1,8 @@
+ import React, { PropTypes } from 'react'
+ import Blogpost from './Blogpost'
+ 
+-const BlogpostList = ({ blogposts, onBlogpostClick }) => {
+-  console.log("Blogposts: " + blogposts)
+-  if (!blogposts) {
+-    blogposts = {}
+-  }
+-  console.log("Blogposts: ")
+-  console.log(blogposts)
+-
+-  (
++const BlogpostList = ({ blogposts, onBlogpostClick }) =>
++  (    
+   <ul>
+     {Object.keys(blogposts)
+       .map((postId) => (
+@@ -21,7 +14,6 @@ const BlogpostList = ({ blogposts, onBlogpostClick }) => {
+     ))}
+   </ul>
+   )
+-}
+ 
+ BlogpostList.propTypes = {
+   blogposts: PropTypes.objectOf(PropTypes.shape({
+diff --git a/src/VisibleBlogpostsList.js b/src/VisibleBlogpostsList.js
+index 2205d7e..562ec3e 100644
+--- a/src/VisibleBlogpostsList.js
++++ b/src/VisibleBlogpostsList.js
+@@ -10,12 +10,15 @@ const getVisibleBlogposts = (blogposts, filter) => {
+       return filterMap(blogposts, (bp) => bp.published)
+     case 'UNPUBLISHED_ONLY':
+       return filterMap(blogposts, (bp) => !bp.published)
++    default:
++      console.log("Warning: unknown filter: " + filter)
++      return blogposts
+   }
+ }
+ 
+ function filterMap(inMap, filterFunc) {
+   console.log("Filtering")
+-  
++
+   var newMap = {}
+   for (var key in inMap) {
+     // skip loop if the property is from prototype
+@@ -29,10 +32,13 @@ function filterMap(inMap, filterFunc) {
+     }
+   }
+ 
++  console.log("Filtered: " + newMap)
+   return newMap
+ }
+ 
+ const mapStateToProps = (state) => {
++  console.log(state)
++
+   return {
+     blogposts: getVisibleBlogposts(state.blogposts, state.visibilityFilter)
+   }
+diff --git a/src/reducers/blogposts.js b/src/reducers/blogposts.js
+index 0749338..6805a1c 100644
+--- a/src/reducers/blogposts.js
++++ b/src/reducers/blogposts.js
+@@ -27,7 +27,7 @@ function blogposts(state = {}, action) {
+           console.log("RETURNING FROM PUBLISH: " + result)
+           return result
+         } else {
+-          console.log("RETURNING PUBPUB" + state)
++          console.log("RETURNING " + state)
+           return state
+         }
+ 
+diff --git a/src/reducers/index.js b/src/reducers/index.js
+index b89057e..ee1d249 100644
+--- a/src/reducers/index.js
++++ b/src/reducers/index.js
+@@ -1,10 +1,10 @@
+ import blogposts from './blogposts'
+-import visibilityFilters from './visibilityFilters'
++import visibilityFilter from './visibilityFilter'
+ import { combineReducers } from 'redux'
+ 
+ const golbyApp = combineReducers({
+   blogposts,
+-  visibilityFilters
++  visibilityFilter
+ })
+ 
+ export default golbyApp
+diff --git a/src/reducers/visibilityFilter.js b/src/reducers/visibilityFilter.js
+new file mode 100644
+index 0000000..440c328
+--- /dev/null
++++ b/src/reducers/visibilityFilter.js
+@@ -0,0 +1,21 @@
++import { ADD_POST, DELETE_POST, PUBLISH_POST, SET_VISIBILITY } from '../actions'
++import { VisibilityFilters } from '../actions'
++import { combineReducers } from 'redux'
++
++function visibilityFilter(state = VisibilityFilters.ALL, action) {
++  console.log("Inside visibilityFilter, setting: ")
++  console.log(action)
++  console.log(state)
++
++  switch (action.type) {
++    case SET_VISIBILITY:
++      console.log("RETURNING FROM VISIBLITY: " + action.filter)
++      return action.filter
++
++    default:
++      console.log("RETURNING DEFAULT: " + state)
++      return state
++  }
++}
++
++export default visibilityFilter

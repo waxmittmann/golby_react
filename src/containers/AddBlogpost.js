@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addBlogpost } from './actions'
+
+import { addBlogpost } from '../actions'
 //import { Button } from 'react-bootstrap';
 
 let AddBlogpost = ({ dispatch }) => {
