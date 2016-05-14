@@ -1,14 +1,7 @@
 import React, { PropTypes } from 'react'
 import Blogpost from './Blogpost'
 
-const BlogpostList = ({ blogposts, onBlogpostClick }) => {
-  console.log("Blogposts: " + blogposts)
-  if (!blogposts) {
-    blogposts = {}
-  }
-  console.log("Blogposts: ")
-  console.log(blogposts)
-
+const BlogpostList = ({ blogposts, onBlogpostClick }) =>
   (
   <ul>
     {Object.keys(blogposts)
@@ -21,7 +14,6 @@ const BlogpostList = ({ blogposts, onBlogpostClick }) => {
     ))}
   </ul>
   )
-}
 
 BlogpostList.propTypes = {
   blogposts: PropTypes.objectOf(PropTypes.shape({

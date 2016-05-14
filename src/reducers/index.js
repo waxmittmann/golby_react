@@ -1,10 +1,10 @@
 import blogposts from './blogposts'
-import visibilityFilters from './visibilityFilters'
+import visibilityFilter from './visibilityFilter'
 import { combineReducers } from 'redux'
 
 const golbyApp = combineReducers({
   blogposts,
-  visibilityFilters
+  visibilityFilter
 })
 
 export default golbyApp

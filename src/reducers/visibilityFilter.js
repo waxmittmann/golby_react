@@ -2,17 +2,14 @@ import { ADD_POST, DELETE_POST, PUBLISH_POST, SET_VISIBILITY } from '../actions'
 import { VisibilityFilters } from '../actions'
 import { combineReducers } from 'redux'
 
-function visibilityFilters(state = VisibilityFilters.ALL, action) {
-  console.log("Inside visibilityFilter")
+function visibilityFilter(state = VisibilityFilters.ALL, action) {
   switch (action.type) {
     case SET_VISIBILITY:
-      console.log("RETURNING FROM VISIBLITY: " + action.filter)
       return action.filter
 
     default:
-      console.log("RETURNING DEFAULT: " + state)
       return state
   }
 }
 
-export default visibilityFilters
+export default visibilityFilter

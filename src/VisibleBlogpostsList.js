@@ -10,6 +10,9 @@ const getVisibleBlogposts = (blogposts, filter) => {
       return filterMap(blogposts, (bp) => bp.published)
     case 'UNPUBLISHED_ONLY':
       return filterMap(blogposts, (bp) => !bp.published)
+    default:
+      console.log("Warning: unknown filter: " + filter)
+      return blogposts
   }
 }
 
