@@ -46,4 +46,5 @@ const golbyApp = combineReducers({
   visibilityFilter
 })
 
+//export blogposts
 export default golbyApp

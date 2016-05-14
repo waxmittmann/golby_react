@@ -7,9 +7,9 @@ const getVisibleBlogposts = (blogposts, filter) => {
     case 'ALL':
       return blogposts
     case 'PUBLISHED_ONLY':
-      filterMap(blogposts, (bp) => bp.published)
+      return filterMap(blogposts, (bp) => bp.published)
     case 'UNPUBLISHED_ONLY':
-      filterMap(blogposts, (bp) => !bp.published)
+      return filterMap(blogposts, (bp) => !bp.published)
   }
 }
 
