@@ -1,19 +1,19 @@
 import React, { PropTypes } from 'react'
 
-const Blogpost = ({ onClick, published, title, body }) => (
+const Blogpost = ({ blogpostClicked, published, title, body }) => (
   <li
-    onClick={onClick}
+    onClick={blogpostClicked}
     style={{
-      textDecoration: published ? 'line-through' : 'none'
+      textDecoration: published ? 'none' : 'line-through'
     }}
   >
-    <p> {title} </p>
-    <p> {body}  </p>
+    <p>{title}</p>
+    <p>{body}</p>
   </li>
 )
 
 Blogpost.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  blogpostClicked: PropTypes.func.isRequired,
   published: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired
